@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.todo.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.todo.model.UserInfo" >
+    <constructor >
+      <idArg column="user_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="wx_openid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="type" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="is_free_hotspot" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="create_channel" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="create_dttm" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="last_login_dttm" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="last_login_ip" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, name, password, wx_openid, type, status, is_free_hotspot, create_channel, 
+    create_dttm, last_login_dttm, last_login_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user_info
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.todo.model.UserInfo" >
+    insert into user_info (user_id, name, password, 
+      wx_openid, type, status, is_free_hotspot, 
+      create_channel, create_dttm, last_login_dttm, 
+      last_login_ip)
+    values (#{userId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{wxOpenid,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{isFreeHotspot,jdbcType=CHAR}, 
+      #{createChannel,jdbcType=CHAR}, #{createDttm,jdbcType=INTEGER}, #{lastLoginDttm,jdbcType=INTEGER}, 
+      #{lastLoginIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.todo.model.UserInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="wxOpenid != null" >
+        wx_openid,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isFreeHotspot != null" >
+        is_free_hotspot,
+      </if>
+      <if test="createChannel != null" >
+        create_channel,
+      </if>
+      <if test="createDttm != null" >
+        create_dttm,
+      </if>
+      <if test="lastLoginDttm != null" >
+        last_login_dttm,
+      </if>
+      <if test="lastLoginIp != null" >
+        last_login_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="wxOpenid != null" >
+        #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="isFreeHotspot != null" >
+        #{isFreeHotspot,jdbcType=CHAR},
+      </if>
+      <if test="createChannel != null" >
+        #{createChannel,jdbcType=CHAR},
+      </if>
+      <if test="createDttm != null" >
+        #{createDttm,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginDttm != null" >
+        #{lastLoginDttm,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginIp != null" >
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.todo.model.UserInfo" >
+    update user_info
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="wxOpenid != null" >
+        wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="isFreeHotspot != null" >
+        is_free_hotspot = #{isFreeHotspot,jdbcType=CHAR},
+      </if>
+      <if test="createChannel != null" >
+        create_channel = #{createChannel,jdbcType=CHAR},
+      </if>
+      <if test="createDttm != null" >
+        create_dttm = #{createDttm,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginDttm != null" >
+        last_login_dttm = #{lastLoginDttm,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginIp != null" >
+        last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.todo.model.UserInfo" >
+    update user_info
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+      type = #{type,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR},
+      is_free_hotspot = #{isFreeHotspot,jdbcType=CHAR},
+      create_channel = #{createChannel,jdbcType=CHAR},
+      create_dttm = #{createDttm,jdbcType=INTEGER},
+      last_login_dttm = #{lastLoginDttm,jdbcType=INTEGER},
+      last_login_ip = #{lastLoginIp,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>
