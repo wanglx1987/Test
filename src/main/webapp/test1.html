@@ -6,11 +6,12 @@
 </head>
 <script>
     function goT1() {
-        // location.href = "index.jsp";
+        location.href = "index.jsp";
         $.ajax({
             url : "goCheck.do",
             success : function(data) {
                 alert(1111);
+                alert(333333);
             }
         })
     }
